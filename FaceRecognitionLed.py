@@ -6,10 +6,19 @@ from cvzone.FaceDetectionModule import FaceDetector
 # ESP32 IP address and endpoint for controlling the LED
 ESP32_IP = 'http://192.168.1.11'  # Ensure this IP is correct
 
-# Load the known face image and encode it
-known_image = face_recognition.load_image_file("C:\\Users\\Syed Thameemuddin\\Pictures\\Thameem1.png")
-known_encoding = face_recognition.face_encodings(known_image)[0]
-known_name = "Thameem"  # Replace with the name you want to display
+# Load the known face images and encode them
+known_images = {
+    "Thameem": "C:\\Users\\Syed Thameemuddin\\Pictures\\Thameem1.png",
+    "Najju": "C:\\Users\\Syed Thameemuddin\\Pictures\\Najju.jpg",
+    "Almas": "C:\\Users\\Syed Thameemuddin\\Pictures\\Almas.jpg"
+}
+
+# Encode the known faces
+known_encodings = {}
+for name, image_path in known_images.items():
+    image = face_recognition.load_image_file(image_path)
+    encoding = face_recognition.face_encodings(image)[0]
+    known_encodings[name] = encoding
 
 # Initialize the face detector using cvzone
 detector = FaceDetector()
@@ -63,12 +72,13 @@ def main():
                 face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
 
                 for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
-                    # Compare the detected face with the known face
-                    matches = face_recognition.compare_faces([known_encoding], face_encoding)
+                    # Compare the detected face with the known faces
+                    matches = face_recognition.compare_faces(list(known_encodings.values()), face_encoding)
                     name = "Unknown"  # Default name if no match is found
 
-                    if matches[0]:  # If the face matches the known face
-                        name = known_name
+                    if any(matches):  # If the face matches any known face
+                        matched_idx = matches.index(True)
+                        name = list(known_encodings.keys())[matched_idx]
 
                     # Draw a rectangle around the face
                     cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), thickness=2)
@@ -91,3 +101,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
