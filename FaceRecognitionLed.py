@@ -7,9 +7,9 @@ from cvzone.FaceDetectionModule import FaceDetector
 ESP32_IP = 'http://192.168.1.11'  # Ensure this IP is correct
 
 # Load the known face image and encode it
-known_image = face_recognition.load_image_file("C:\\Users\\Syed Thameemuddin\\Pictures\\sample.jpg")
+known_image = face_recognition.load_image_file("C:\\Users\\Syed Thameemuddin\\Pictures\\Thameem1.png")
 known_encoding = face_recognition.face_encodings(known_image)[0]
-known_name = "Your Name"  # Replace with the name you want to display
+known_name = "Thameem"  # Replace with the name you want to display
 
 # Initialize the face detector using cvzone
 detector = FaceDetector()
