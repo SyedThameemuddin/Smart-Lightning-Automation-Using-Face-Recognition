@@ -67,4 +67,5 @@ This project is particularly useful in office environments where it automates li
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This project is licensed under the MIT License. See the [License](LICENSE.txt)
+ file for more details.
