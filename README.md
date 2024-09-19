@@ -63,6 +63,48 @@ This project is particularly useful in office environments where it automates li
 
 ## Contributing
 
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. **Fork the Repository:**
+   - Click the "Fork" button at the top right of the repository page to create your copy of the repository.
+
+2. **Clone Your Fork:**
+   - Clone your forked repository to your local machine using:
+     ```bash
+     git clone https://github.com/SyedThameemuddin/Smart-Lighting-Automation.git
+     ```
+
+3. **Create a New Branch:**
+   - Create a new branch for your feature or fix:
+     ```bash
+     git checkout -b feature/my-feature
+     ```
+
+4. **Make Your Changes:**
+   - Make your changes in the codebase and commit them:
+     ```bash
+     git commit -m "Add my feature"
+     ```
+
+5. **Push Your Changes:**
+   - Push your changes to your fork:
+     ```bash
+     git push origin feature/my-feature
+     ```
+
+6. **Open a Pull Request:**
+   - Go to the original repository and click on "Pull Requests."
+   - Click on "New Pull Request" and select your branch to compare with the main branch of the original repository.
+   - Provide a description of your changes and submit the pull request.
+
+### Guidelines
+- Please ensure your code adheres to the existing style and conventions.
+- Include tests for any new functionality where applicable.
+- Update documentation as needed.
+
+Thank you for considering contributing to this project!
 
 
 ## License
