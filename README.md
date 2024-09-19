@@ -59,11 +59,11 @@ This project is particularly useful in office environments where it automates li
 
 ## Circuit Diagram
 
-(Include an image of the circuit diagram showing how the sensors, LED, buzzer, and ESP32 are connected.)
+
 
 ## Contributing
 
-Feel free to contribute to this project! Fork the repository, create a feature branch, and open a pull request for review.
+
 
 ## License
 
