@@ -2,8 +2,8 @@
 #include <WebServer.h>
 
 // Replace with your network credentials
-const char* ssid = "Airtel_Thameem_001";
-const char* password = "Allah7860";
+const char* ssid = "IDEA_WIFI_2";
+const char* password = "ideawifi2";
 
 WebServer server(80);
 
@@ -15,6 +15,9 @@ bool bothEnabled = false;
 
 const int ledPin = 4;
 const int irSensorPin = 14;
+const int buzzerPin = 5;  // Pin for the buzzer
+
+bool lastLedState = false;
 
 void handleRoot();
 void handleFaceDetectionControl();
@@ -27,6 +30,7 @@ void setup() {
   Serial.begin(115200);
   pinMode(ledPin, OUTPUT);
   pinMode(irSensorPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);  // Set the buzzer pin as output
 
   WiFi.begin(ssid, password);
   Serial.print("Connecting to Wi-Fi");
@@ -58,17 +62,17 @@ void loop() {
   bool faceDetected = faceDetectionEnabled ? getFaceDetectionStatus() : false;
 
   if (manualControl) {
-    digitalWrite(ledPin, ledState ? HIGH : LOW);
+    updateLedState(ledState);
   } else if (bothEnabled) {
     if (irSensorState == LOW || faceDetected) {
-      digitalWrite(ledPin, HIGH);
+      updateLedState(true);
     } else {
-      digitalWrite(ledPin, LOW);
+      updateLedState(false);
     }
   } else if (faceDetectionEnabled) {
-    digitalWrite(ledPin, faceDetected ? HIGH : LOW);
+    updateLedState(faceDetected);
   } else if (irSensorEnabled) {
-    digitalWrite(ledPin, irSensorState == LOW ? HIGH : LOW);
+    updateLedState(irSensorState == LOW);
   }
 }
 
@@ -76,6 +80,17 @@ bool getFaceDetectionStatus() {
   // Simulate face detection status for demo purposes
   // You should replace this with actual status retrieval logic
   return false; // Replace with actual status retrieval from the Python script
+}
+
+void updateLedState(bool state) {
+  if (state && !lastLedState) {
+    // LED just turned on, make the buzzer beep for one second
+    digitalWrite(buzzerPin, HIGH);
+    delay(200);  // Beep for one second
+    digitalWrite(buzzerPin, LOW);
+  }
+  digitalWrite(ledPin, state ? HIGH : LOW);
+  lastLedState = state;  // Update the last LED state
 }
 
 void handleRoot() {
@@ -125,7 +140,7 @@ void handleLedControl() {
   if (server.hasArg("state")) {
     ledState = server.arg("state") == "1";
     manualControl = true;
-    digitalWrite(ledPin, ledState ? HIGH : LOW);
+    updateLedState(ledState);
   }
   server.send(200, "text/plain", ledState ? "LED On" : "LED Off");
 }
@@ -147,6 +162,7 @@ void handleStatusCheck() {
   status += irSensorEnabled ? "Enabled" : "Disabled";
   server.send(200, "text/plain", status);
 }
+
 
 
 
