@@ -57,12 +57,6 @@ This project is particularly useful in office environments where it automates li
 
 6. Access the web interface via the IP address of your ESP32 to manually control the system.
 
-## Circuit Diagram
-
-
-
-## Contributing
-
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
