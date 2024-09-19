@@ -4,13 +4,13 @@ import face_recognition
 from cvzone.FaceDetectionModule import FaceDetector
 
 # ESP32 IP address and endpoint for controlling the LED
-ESP32_IP = 'http://192.168.1.11'  # Ensure this IP is correct
+ESP32_IP = 'http://172.31.99.11'  # Ensure this IP is correct
 
 # Load the known face images and encode them
 known_images = {
     "Thameem": "C:\\Users\\Syed Thameemuddin\\Pictures\\Thameem1.png",
-    "Najju": "C:\\Users\\Syed Thameemuddin\\Pictures\\Najju.jpg",
-    "Almas": "C:\\Users\\Syed Thameemuddin\\Pictures\\Almas.jpg"
+    # "Najju": "C:\\Users\\Syed Thameemuddin\\Pictures\\Najju.jpg",
+    # "Almas": "C:\\Users\\Syed Thameemuddin\\Pictures\\Almas.jpg"
 }
 
 # Encode the known faces
